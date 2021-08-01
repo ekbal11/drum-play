@@ -3,12 +3,20 @@ for(var i=0;i<document.querySelectorAll(".drum").length;i++){
 
 document.querySelectorAll("button")[i].addEventListener("click",function handleClick(){
     
-    buttonInnerhtml(this.innerHTML);
+    var buttonInner = this.innerHTML;
+
+    buttonInnerhtml(buttonInner);
+
+    addAnimation(buttonInner);
 });}
 
 document.addEventListener("keypress", function(event){
     
-    buttonInnerhtml(event.key);
+       var buttonInner = event.key;
+
+    buttonInnerhtml(buttonInner);
+    addAnimation(buttonInner);
+
 
 });
 
@@ -47,4 +55,16 @@ function buttonInnerhtml(key){
         
         default:alert(key);
     }      
+}
+
+
+function addAnimation(currentKey){
+
+    var animation = document.querySelector("." + currentKey);
+    animation.classList.add("pressed");
+
+    setTimeout( () => {
+        animation.classList.remove("pressed");
+    }, 100);
+
 }
